@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="route_line_width">4</integer>
+    <integer name="route_line_maneuver_width">4</integer>
+    <integer name="route_line_maneuver_direction_width">4</integer>
+</resources>

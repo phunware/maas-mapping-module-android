@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="fun_green">#00693f</color>
+    <color name="ocean_green">#51b37e</color>
+    <color name="congress_blue">#00407f</color>
+    <color name="azure_radiance">#0073E6</color>
+    <color name="malibu">#75BAFF</color>
+    <color name="bali_hai">#8298B0</color>
+    <color name="azure_radiance_variant">#0095FF</color>
+    <color name="french_pass">#B9DEFF</color>
+    <color name="cod_gray">#1E1E1E</color>
+    <color name="alabaster">#FAFAFA</color>
+    <color name="mine_shaft">#282828</color>
+    <color name="persian_red">#D03E3E</color>
+    <color name="froly">#F56B6B</color>
+    <color name="link_water">#E2F0F8</color>
+    <color name="big_stone">#182A3A</color>
+</resources>

@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Map Sample App</string>
+    <string name="location_permission_granted">Location permission granted</string>
+    <string name="location_permission_denied">Location permission denied</string>
+    <string name="location_permission_no">Not Right Now</string>
+    <string name="location_permission_title">Allow Location Access?</string>
+    <string name="location_permission_html"><![CDATA[
+To help you find your way with wayfinding, we’ll need to access a few things.
+Your location and bluetooth is needed for certain features:<ul>
+<li> Show accurate location</li>
+<li> Turn by Turn directions</li>
+<li> Estimate Arrival Time</li>
+</ul>
+Next, you will be asked if we can use your location, please <b>allow</b> the app to access the device’s location.
+<br/>
+<br/>
+Permissions can be changed later in system settings.
+    ]]>
+    </string>
+
+    <string-array name="sample_buildings_array">
+        <item>Single Building Display Name</item>
+        <item>Multi-Building Display Name</item>
+    </string-array>
+</resources>

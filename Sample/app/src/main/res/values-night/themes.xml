@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:colorBackground">@android:color/black</item>
+        <item name="colorOnBackground">@android:color/white</item>
+
+        <!-- Primary brand colors. -->
+        <item name="colorPrimary">@color/malibu</item>
+        <item name="colorPrimaryVariant">@color/french_pass</item>
+        <item name="colorOnPrimary">@android:color/black</item>
+
+        <!-- Secondary brand colors -->
+        <item name="colorSecondary">@color/bali_hai</item>
+        <item name="colorSecondaryVariant">@color/big_stone</item>
+        <item name="colorOnSecondary">@android:color/black</item>
+
+        <!-- Colors for "cards" -->
+        <item name="colorSurface">@color/cod_gray</item>
+        <item name="colorOnSurface">@android:color/white</item>
+
+        <!-- Additional colors -->
+        <item name="colorError">@color/froly</item>
+        <item name="colorOnError">@color/mine_shaft</item>
+
+        <!-- Customize your theme here. -->
+        <item name="smartMapPoiFallbackImage">@drawable/ic_poi_default</item>
+        <item name="smartMapPoiDetailHeaderFallbackImage">@drawable/poi_detail_header_placeholder_image</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+
+        <!--  Typography   -->
+        <!-- Material 2 type attributes-->
+        <item name="textAppearanceHeadline1">@style/TextAppearance.App.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.App.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.App.Headline3</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.App.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.App.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.App.Body1</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.App.Overline</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.App.Caption</item>
+        <item name="android:textAppearanceButton">@style/TextAppearance.App.Button</item>
+    </style>
+</resources>
