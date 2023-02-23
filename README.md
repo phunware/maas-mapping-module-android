@@ -11,7 +11,7 @@ Phunware Mapping is a module that provides mapping and routing functionalities. 
 ## Requirements
 
 - minSdk 23
-- targetSdk 31
+- targetSdk 33
 - AndroidX
 
 ## Download
@@ -29,8 +29,7 @@ Add the following dependency to your app level `build.gradle` file:
 
 ```groovy
 dependencies {
-    implementation "com.phunware.smartapp:smartmap-library-android:1.4.0"
-    implementation "com.phunware.smartapp:permissions-library-android:1.2.0-beta03"
+    implementation "com.phunware.smartapp:smartmap-library-android:1.7.0-beta04"
 }
 ```
 
@@ -56,6 +55,7 @@ Precise Location and Bluetooth Scan permissions are required for real-time locat
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
@@ -77,23 +77,13 @@ Precise Location and Bluetooth Scan permissions are required for real-time locat
 
 ### Permission Priming
 
-Priming the user for and requesting permissions is achieved by using the `Permissions` utility class, in combination with a `PermissionFragment`:
+Priming the user for and requesting permissions is achieved by using the `MappingPermissionsHelper` utility class:
 
 ```kotlin
-if (Permissions.checkPermissions(this, permissions)) {
-    Toast.makeText(this, getString(R.string.location_permission_granted), Toast.LENGTH_SHORT).show()
-} else {
-    val builder = PermissionFragment.Builder(
-        permissions = permissions,
-        iconRes = com.phunware.permissions.R.drawable.ic_location_dialog,
-        title = getString(R.string.location_permission_title),
-        text = getString(R.string.location_permission_html),
-        okLabel = getString(android.R.string.ok),
-    )
-
-    getPermissions(builder) { permissionResults ->
-        permissionResults.forEach { (permission, granted) ->
-        // Handle any denied permissions
+val supportsLocation = packageManager.hasSystemFeature(PackageManager.FEATURE_LOCATION_GPS)
+if (supportsLocation) {
+    MappingPermissionsHelper.handleLocationPermissions(applicationContext, this) {
+        // Handle completion of requested location permissions
     }
 }
 ```
@@ -106,7 +96,6 @@ After precise location and bluetooth scan permissions have been granted, launchi
 MapConfigurationProvider.setInstance(mapConfigurationProvider)
 MapsStringProvider.setInstance(stringProvider)
 MeetingRoomStatusProvider.setInstance(meetingRoomStatusProvider)
-
 ...
 
 val intent = SmartMapActivity.SmartMapIntentBuilder(mapName).build(this@MainActivity)

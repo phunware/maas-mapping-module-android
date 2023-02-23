@@ -23,8 +23,9 @@
         <item name="colorOnError">@android:color/white</item>
 
         <!-- Customize your theme here. -->
-        <item name="smartMapPoiFallbackImage">@drawable/ic_poi_default</item>
+        <item name="smartMapPoiFallbackImage">@drawable/ic_phunware_mapping_default_poi</item>
         <item name="smartMapPoiDetailHeaderFallbackImage">@drawable/poi_detail_header_placeholder_image</item>
+        <item name="smartMapArrivalCardHeaderFallbackImage">@drawable/poi_detail_header_placeholder_image</item>
         <item name="android:windowBackground">@null</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>

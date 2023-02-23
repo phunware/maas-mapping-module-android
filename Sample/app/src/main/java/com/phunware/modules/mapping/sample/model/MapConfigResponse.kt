@@ -1,7 +1,8 @@
 package com.phunware.modules.mapping.sample.model
 
+import androidx.annotation.ColorRes
 import com.google.gson.annotations.SerializedName
-import com.phunware.smartmap.core.MapConfig
+import com.phunware.smartmap.core.MapConfig.DistanceDisplayMode
 import com.phunware.smartmap.core.MapConfig.RouteSnappingTolerance
 
 data class MapConfigResponse(
@@ -16,9 +17,11 @@ data class MapConfigResponse(
     @SerializedName("otherCategory")
     val otherCategory: PoiCategoryResponse?,
     @SerializedName("routeUiConfig")
-    val routeUiConfig: MapConfig.RouteUiConfig,
+    val routeUiConfig: RouteUiConfigResponse?,
     @SerializedName("androidOffRouteConfig")
-    val offRouteConfig: OffRouteConfigResponse?
+    val offRouteConfig: OffRouteConfigResponse?,
+    @SerializedName("routeArrivalConfig")
+    val routeArrivalConfig: RouteArrivalConfigResponse?
 ) {
     data class FeatureConfigResponse(
         @SerializedName("roles")
@@ -33,7 +36,9 @@ data class MapConfigResponse(
         @SerializedName("displayText")
         val displayText: String?,
         @SerializedName("stringsFile")
-        val stringsFile: String?
+        val stringsFile: String?,
+        @SerializedName("defaultSpokenLanguageRegion")
+        val defaultSpokenLanguageRegion: String?
     )
 
     data class MapSettingsResponse(
@@ -69,7 +74,15 @@ data class MapConfigResponse(
         @SerializedName("enableBlueDotLocation")
         val enableBlueDotLocation: Boolean,
         @SerializedName("enableAccessibleRoutesByDefault")
-        val enableAccessibleRoutesByDefault: Boolean?
+        val enableAccessibleRoutesByDefault: Boolean?,
+        @SerializedName("enableLandmarkBasedRouting")
+        val enableLandmarkBasedRouting: Boolean?,
+        @SerializedName("poiListDistanceDisplayMode")
+        val poiListDistanceDisplayMode: DistanceDisplayMode?,
+        @SerializedName("routeSummaryDistanceDisplayMode")
+        val routeSummaryDistanceDisplayMode: DistanceDisplayMode?,
+        @SerializedName("travelTimeMetersPerSecond")
+        val travelTimeMetersPerSecond: Float = 1.4f,
     )
 
     data class CampusConfigResponse(
@@ -99,6 +112,24 @@ data class MapConfigResponse(
         val iconUrl: String?,
     )
 
+    data class RouteUiConfigResponse(
+        @SerializedName("maneuverColor")
+        @ColorRes
+        val maneuverColor: Int,
+        @SerializedName("maneuverDirectionColor")
+        @ColorRes
+        val maneuverDirectionColor: Int,
+        @SerializedName("routeColor")
+        @ColorRes
+        val routeColor: Int,
+        @SerializedName("maneuverStrokeWidth")
+        val maneuverStrokeWidth: Int,
+        @SerializedName("maneuverDirectionStrokeWidth")
+        val maneuverDirectionStrokeWidth: Int,
+        @SerializedName("routeStrokeWidth")
+        val routeStrokeWidth: Int
+    )
+
     data class OffRouteConfigResponse(
         @SerializedName("minOffRouteDistanceThreshold")
         val minOffRouteDistanceThresholdMeters: Float,
@@ -110,6 +141,11 @@ data class MapConfigResponse(
         val offRouteIdleTimeThresholdMilliseconds: Int?,
         @SerializedName("alertGracePeriodMilliSeconds")
         val alertGracePeriodMilliSeconds: Int,
+    )
+
+    data class RouteArrivalConfigResponse(
+        @SerializedName("arrivalThreshold")
+        val arrivalThreshold: Int,
     )
 }
 

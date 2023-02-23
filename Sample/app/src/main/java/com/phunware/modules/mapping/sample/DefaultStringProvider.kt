@@ -11,10 +11,6 @@ import com.phunware.smartmap.provider.MAP_STRING_KEY_EXIT_TEXT
 import com.phunware.smartmap.provider.MAP_STRING_KEY_FLOOR_CHANGE_DIRECTION_DOWN
 import com.phunware.smartmap.provider.MAP_STRING_KEY_FLOOR_CHANGE_DIRECTION_UP
 import com.phunware.smartmap.provider.MAP_STRING_KEY_FLOOR_CHANGE_TEMPLATE
-import com.phunware.smartmap.provider.MAP_STRING_KEY_FLOOR_CHANGE_TYPE_ELEVATOR
-import com.phunware.smartmap.provider.MAP_STRING_KEY_FLOOR_CHANGE_TYPE_ESCALATOR
-import com.phunware.smartmap.provider.MAP_STRING_KEY_FLOOR_CHANGE_TYPE_FLOORCHANGE
-import com.phunware.smartmap.provider.MAP_STRING_KEY_FLOOR_CHANGE_TYPE_STAIRS
 import com.phunware.smartmap.provider.MAP_STRING_KEY_HOME_TO_VENUE_PROMPT_NO
 import com.phunware.smartmap.provider.MAP_STRING_KEY_HOME_TO_VENUE_PROMPT_TEXT
 import com.phunware.smartmap.provider.MAP_STRING_KEY_HOME_TO_VENUE_PROMPT_TITLE
@@ -24,6 +20,7 @@ import com.phunware.smartmap.provider.MAP_STRING_KEY_LEAVE_ROUTING_ALERT_TITLE
 import com.phunware.smartmap.provider.MAP_STRING_KEY_MAPPING_NO_ROUTE_AVAILABLE_MESSAGE
 import com.phunware.smartmap.provider.MAP_STRING_KEY_MAPPING_NO_ROUTE_AVAILABLE_TITLE
 import com.phunware.smartmap.provider.MAP_STRING_KEY_MAP_CATEGORIES_HEADER
+import com.phunware.smartmap.provider.MAP_STRING_KEY_NEAR_ME
 import com.phunware.smartmap.provider.MAP_STRING_KEY_NO_RESULTS_TITLE
 import com.phunware.smartmap.provider.MAP_STRING_KEY_OFF_ROUTE_DESCRIPTION
 import com.phunware.smartmap.provider.MAP_STRING_KEY_OFF_ROUTE_DIALOG_DISMISS
@@ -92,6 +89,7 @@ object DefaultStringProvider : MapsStringProvider {
         MAP_STRING_KEY_CURRENT_LOCATION to "Current Location",
         MAP_STRING_KEY_RECENT_LOCATIONS to "Recent Locations",
         MAP_STRING_KEY_ALL_LOCATIONS to "All Locations",
+        MAP_STRING_KEY_NEAR_ME to "Near Me",
         MAP_STRING_KEY_TURN_TEMPLATE to " in %1\$s",
         MAP_STRING_KEY_TURN_LEFT_TEXT to "Turn left",
         MAP_STRING_KEY_TURN_RIGHT_TEXT to "Turn right",
@@ -101,10 +99,6 @@ object DefaultStringProvider : MapsStringProvider {
         MAP_STRING_KEY_STRAIGHT_TEMPLATE to " for %1\$s",
         MAP_STRING_KEY_CONTINUE_STRAIGHT_TEXT to "Continue straight",
         MAP_STRING_KEY_UPCOMINGFLOOR_CHANGE_TEMPALTE to "%1\$s %2\$s towards %3\$s to %4\$s",
-        MAP_STRING_KEY_FLOOR_CHANGE_TYPE_STAIRS to "stairs",
-        MAP_STRING_KEY_FLOOR_CHANGE_TYPE_ESCALATOR to "escalator",
-        MAP_STRING_KEY_FLOOR_CHANGE_TYPE_ELEVATOR to "elevator",
-        MAP_STRING_KEY_FLOOR_CHANGE_TYPE_FLOORCHANGE to "floor change",
         MAP_STRING_KEY_FLOOR_CHANGE_DIRECTION_UP to "up",
         MAP_STRING_KEY_FLOOR_CHANGE_DIRECTION_DOWN to "down",
         MAP_STRING_KEY_SAMPLEFLOOR_CHANGE_TEMPLATE to "Take the %1\$s to %1\$s",

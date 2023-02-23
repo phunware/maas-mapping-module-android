@@ -42,7 +42,8 @@ class MyMapConfigurationProvider(private val context: Context) : MapConfiguratio
                 val newConfig = MapConfig.LanguageConfig(
                     code = languageConfigResponse.code.orEmpty(),
                     displayText = languageConfigResponse.displayText.orEmpty(),
-                    stringsFile = languageConfigResponse.stringsFile.orEmpty()
+                    stringsFile = languageConfigResponse.stringsFile.orEmpty(),
+                    defaultSpokenLanguageRegion = languageConfigResponse.defaultSpokenLanguageRegion.orEmpty()
                 )
                 languages.add(newConfig)
             }
@@ -54,6 +55,8 @@ class MyMapConfigurationProvider(private val context: Context) : MapConfiguratio
                 val campusConfigsList = mutableListOf<MapConfig.CampusConfigs>()
                 if (mapDataResponse.campusConfigs != null && mapDataResponse.campusConfigs.isNotEmpty()) {
                     mapDataResponse.campusConfigs.forEach { campusConfigResponse ->
+                        // TODO: DT 10/7/21 An example of why we should use the Dto suffix when modeling network models
+                        //  vs the UI models. Leaving note here as something to fix in the refactor/productization
                         val newCampusConfig = MapConfig.CampusConfigs(
                             campusId = campusConfigResponse.campusId,
                             languageCode = campusConfigResponse.languageCode.orEmpty(),
@@ -64,7 +67,8 @@ class MyMapConfigurationProvider(private val context: Context) : MapConfiguratio
                 } else {
                     mapDataResponse.buildingConfigs?.forEach { buildingConfigsResponse ->
                         val newBuildingConfigs = MapConfig.BuildingConfigs(
-                            buildingID = buildingConfigsResponse.buildingID ?: BUILDING_CONFIG_BUILDING_ID_DEFAULT,
+                            buildingID = buildingConfigsResponse.buildingID
+                                ?: BUILDING_CONFIG_BUILDING_ID_DEFAULT,
                             languageCode = buildingConfigsResponse.languageCode.orEmpty(),
                             onCampusGeoZoneIds = buildingConfigsResponse.onCampusGeoZoneIds.orEmpty()
                         )
@@ -86,8 +90,13 @@ class MyMapConfigurationProvider(private val context: Context) : MapConfiguratio
                     enableMeetingRoomStatus = mapDataResponse.enableMeetingRoomStatus,
                     meetingRoomStatusRefreshIntervalMilli = mapDataResponse.meetingRoomStatusRefreshIntervalMilli,
                     enableBlueDotLocation = mapDataResponse.enableBlueDotLocation,
-                    enableAccessibleRoutesByDefault = mapDataResponse.enableAccessibleRoutesByDefault ?: true
+                    enableAccessibleRoutesByDefault = mapDataResponse.enableAccessibleRoutesByDefault ?: true,
+                    enableLandmarkBasedRouting = mapDataResponse.enableLandmarkBasedRouting ?: false,
+                    poiListDistanceDisplayMode = mapDataResponse.poiListDistanceDisplayMode ?: MapConfig.DistanceDisplayMode.DISTANCE,
+                    routeSummaryDistanceDisplayMode = mapDataResponse.routeSummaryDistanceDisplayMode ?: MapConfig.DistanceDisplayMode.DISTANCE,
+                    travelTimeMetersPerSecond = mapDataResponse.travelTimeMetersPerSecond,
                 )
+
                 maps.add(newMap)
             }
             val mapSettings = MapConfig.MapSettings(maps)
@@ -109,12 +118,13 @@ class MyMapConfigurationProvider(private val context: Context) : MapConfiguratio
             )
 
             val routeUiConfig = MapConfig.RouteUiConfig(
-                maneuverColor = R.color.cod_gray,
-                maneuverDirectionColor = R.color.ocean_green,
-                routeColor = R.color.fun_green,
-                maneuverStrokeWidth = mapConfigResponse.routeUiConfig.maneuverStrokeWidth,
-                maneuverDirectionStrokeWidth = mapConfigResponse.routeUiConfig.maneuverDirectionStrokeWidth,
-                routeStrokeWidth = mapConfigResponse.routeUiConfig.routeStrokeWidth
+                maneuverColor = R.color.azure_radiance,
+                maneuverDirectionColor = R.color.azure_radiance,
+                routeColor = R.color.azure_radiance,
+                maneuverStrokeWidth = mapConfigResponse.routeUiConfig?.maneuverStrokeWidth ?: 4,
+                maneuverDirectionStrokeWidth = mapConfigResponse.routeUiConfig?.maneuverDirectionStrokeWidth
+                    ?: 4,
+                routeStrokeWidth = mapConfigResponse.routeUiConfig?.routeStrokeWidth ?: 4
             )
 
             val offRouteConfig = mapConfigResponse.offRouteConfig?.let {
@@ -123,7 +133,13 @@ class MyMapConfigurationProvider(private val context: Context) : MapConfiguratio
                     maxOffRouteDistanceThresholdMeters = it.maxOffRouteDistanceThresholdMeters,
                     offRouteTimeThresholdMilliseconds = it.offRouteTimeThresholdMilliseconds,
                     offRouteIdleTimeThresholdMilliseconds = it.offRouteIdleTimeThresholdMilliseconds ?: 0,
-                    alertGracePeriodMilliSeconds = it.alertGracePeriodMilliSeconds
+                    alertGracePeriodMilliSeconds = it.alertGracePeriodMilliSeconds,
+                )
+            }
+
+            val routeArrivalConfig = mapConfigResponse.routeArrivalConfig?.let {
+                MapConfig.RouteArrivalConfig(
+                    arrivalThreshold = it.arrivalThreshold,
                 )
             }
 
@@ -134,7 +150,8 @@ class MyMapConfigurationProvider(private val context: Context) : MapConfiguratio
                 categories = categories,
                 otherCategory = otherCategory,
                 routeUiConfig = routeUiConfig,
-                offRouteConfig = offRouteConfig
+                offRouteConfig = offRouteConfig,
+                routeArrivalConfig = routeArrivalConfig,
             )
 
         } catch (jse: JsonSyntaxException) {

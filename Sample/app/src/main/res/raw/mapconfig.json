@@ -1,13 +1,4 @@
 {
-  "features": {
-    "featureA": {
-      "roles": [
-        "contractor",
-        "regular"
-      ],
-      "config": ""
-    }
-  },
   "languages": [
     {
       "code": "en",
